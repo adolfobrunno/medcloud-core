@@ -52,6 +52,10 @@ public class UserService extends BasicService<User>{
 		super.save(user);
 	}
 	
+	public User getByToken(String token){
+		return this.get(new Query(Criteria.where("token").is(token)));
+	}
+	
 	
 	
 }

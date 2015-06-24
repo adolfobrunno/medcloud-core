@@ -22,12 +22,11 @@ public class BasicService<T> {
 		clazz = null;
 	}
 
-	@SuppressWarnings("hiding")
-	public <T> void save(T ct) {
+	public void save(T ct) {
         mongoOperation.save(ct);
     }
  
-    public <T> void remove(T ct) {
+    public void remove(T ct) {
         mongoOperation.remove(ct);
     }
  
@@ -35,7 +34,7 @@ public class BasicService<T> {
         return mongoOperation.findById(id, clazz);
     }
  
-    public List getAll() {
+    public List<T> getAll() {
         return mongoOperation.findAll(clazz);
     }
     
