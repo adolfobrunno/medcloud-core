@@ -38,10 +38,16 @@ public class BasicService<T> {
         return mongoOperation.findAll(clazz);
     }
     
-    public T get(Query query){
+    public T getOne(Query query){
     	return mongoOperation.findOne(query, clazz);
     }
+    
+    public List<T> get(Query query){
+    	return mongoOperation.find(query, clazz);
+    }
 	
-	
+	public MongoOperations getMongoOperations(){
+		return this.mongoOperation;
+	}
 	
 }

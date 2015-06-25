@@ -1,5 +1,6 @@
 package com.medcloud.core.entities;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,7 +15,7 @@ public class Image {
 	private String creation_date;
 	private String size;
 	private String cid;
-	private User user;
+	private String user_id;
 
 	public String getIid() {
 		return iid;
@@ -56,12 +57,12 @@ public class Image {
 		this.cid = cid;
 	}
 
-	public User getUser() {
-		return user;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	
+
 }

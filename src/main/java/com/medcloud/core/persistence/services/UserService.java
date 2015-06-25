@@ -6,9 +6,10 @@ import javax.annotation.Resource;
 
 import org.jasypt.exceptions.EncryptionOperationNotPossibleException;
 import org.jasypt.spring.security3.PasswordEncoder;
-import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.medcloud.core.entities.User;
@@ -18,8 +19,6 @@ import com.medcloud.core.persistence.BasicService;
 @Service
 public class UserService extends BasicService<User>{
 
-	BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-
 	@Resource
 	PasswordEncoder pe;
 	
@@ -28,7 +27,7 @@ public class UserService extends BasicService<User>{
 	}
 
 	public User getByUsername(String username){
-		return this.get(new Query(Criteria.where("username").is(username)));
+		return this.getOne(new Query(Criteria.where("username").is(username)));
 	}
 	
 	public String authenticate(String username, String password) throws AuthenticationException{
@@ -49,11 +48,15 @@ public class UserService extends BasicService<User>{
 	public void save(User user){
 		user.setToken(UUID.randomUUID().toString());
 		user.setPassword(pe.encodePassword(user.getPassword(), null));
-		super.save(user);
 	}
 	
 	public User getByToken(String token){
-		return this.get(new Query(Criteria.where("token").is(token)));
+		return this.getOne(new Query(Criteria.where("token").is(token)));
+	}
+	
+	public User getLoggedUser(){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return this.getByUsername(auth.getName());
 	}
 	
 	
