@@ -6,7 +6,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -49,7 +48,6 @@ public class ImageService extends BasicService<Image> {
 		User user = userService.getLoggedUser();
 		List<Image> images = new ArrayList<Image>();
 		Query query = new Query(Criteria.where("user_id").is(user.getId()));
-//		BasicQuery query1 = new BasicQuery();
 		images = super.get(query);
 		return images;
 	}

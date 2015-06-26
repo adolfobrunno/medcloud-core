@@ -37,10 +37,10 @@ public class UserService extends BasicService<User>{
 			if(user != null && pe.isPasswordValid(user.getPassword(), password, null)){
 				return user.getToken();
 			}else{
-				throw new AuthenticationException("Usuário / senha inválido");
+				throw new AuthenticationException("Invalid username / password");
 			}
 		}catch (EncryptionOperationNotPossibleException ex) {
-			throw new AuthenticationException("Usuário / senha inválido");
+			throw new AuthenticationException("Invalid username / password");
 		}
 		
 	}
