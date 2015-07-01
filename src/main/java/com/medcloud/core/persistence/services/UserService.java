@@ -48,6 +48,7 @@ public class UserService extends BasicService<User>{
 	public void save(User user){
 		user.setToken(UUID.randomUUID().toString());
 		user.setPassword(pe.encodePassword(user.getPassword(), null));
+		super.save(user);
 	}
 	
 	public User getByToken(String token){

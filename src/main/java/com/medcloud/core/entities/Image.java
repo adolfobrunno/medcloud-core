@@ -1,7 +1,7 @@
 package com.medcloud.core.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.medcloud.core.enums.ImageType;
@@ -16,6 +16,8 @@ public class Image {
 	private String size;
 	private String cid;
 	private String user_id;
+	@Transient
+	private String absolutPath;
 
 	public String getIid() {
 		return iid;
@@ -63,6 +65,14 @@ public class Image {
 
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+
+	public String getAbsolutPath() {
+		return absolutPath;
+	}
+
+	public void setAbsolutePath(String path) {
+		this.absolutPath = path;
 	}
 
 }
