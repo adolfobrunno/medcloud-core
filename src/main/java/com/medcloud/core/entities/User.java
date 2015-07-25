@@ -9,14 +9,11 @@ public class User {
  
 	@Id
 	private String id;
- 
 	private String username;
- 
 	private String password;
-	
 	private String token;
-	
 	private String role;
+	private Company company;
 	
 	public String getId() {
 		return id;
@@ -56,6 +53,14 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 	
 }

@@ -30,7 +30,7 @@ public class BasicService<T> {
         mongoOperation.remove(ct);
     }
  
-    public T getBydId(String id) {
+    public T getById(String id) {
         return mongoOperation.findById(id, clazz);
     }
  
@@ -48,6 +48,12 @@ public class BasicService<T> {
 	
 	public MongoOperations getMongoOperations(){
 		return this.mongoOperation;
+	}
+	
+	public void saveAll(List<T> list){
+		for (T t : list) {
+			this.save(t);
+		}
 	}
 	
 }

@@ -1,7 +1,6 @@
 package com.medcloud.core.entities;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.medcloud.core.enums.ImageType;
@@ -9,15 +8,17 @@ import com.medcloud.core.enums.ImageType;
 @Document(collection = "images")
 public class Image {
 	
+	
 	@Id
-	private String iid;
-	private ImageType type;
+	private String iid; // InstanceID
+	private String sid; // StudyID
+	private String sno; // Series Number
+	private String pid; // PatientID
+	private String cid; // CompanyID
+	private ImageType modality;
 	private String creation_date;
 	private String size;
-	private String cid;
 	private String user_id;
-	@Transient
-	private String absolutPath;
 
 	public String getIid() {
 		return iid;
@@ -27,12 +28,12 @@ public class Image {
 		this.iid = iid;
 	}
 
-	public ImageType getType() {
-		return type;
+	public ImageType getModality() {
+		return modality;
 	}
 
-	public void setType(ImageType type) {
-		this.type = type;
+	public void setModality(ImageType type) {
+		this.modality = type;
 	}
 
 	public String getCreation_date() {
@@ -67,12 +68,32 @@ public class Image {
 		this.user_id = user_id;
 	}
 
-	public String getAbsolutPath() {
-		return absolutPath;
+	public String getSid() {
+		return sid;
 	}
 
-	public void setAbsolutePath(String path) {
-		this.absolutPath = path;
+	public void setSid(String sid) {
+		this.sid = sid;
 	}
+
+	public String getSno() {
+		return sno;
+	}
+
+	public void setSno(String sno) {
+		this.sno = sno;
+	}
+
+	public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
+	
+//	public String createTree(){
+//		return TreeUtils.getStringTreeByImage(this);
+//	}
 
 }
