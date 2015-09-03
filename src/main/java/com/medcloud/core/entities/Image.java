@@ -1,5 +1,8 @@
 package com.medcloud.core.entities;
 
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,7 +19,7 @@ public class Image {
 	private String pid; // PatientID
 	private String cid; // CompanyID
 	private ImageType modality;
-	private String creation_date;
+	private LocalDate creation_date;
 	private String size;
 	private String user_id;
 
@@ -36,12 +39,17 @@ public class Image {
 		this.modality = type;
 	}
 
-	public String getCreation_date() {
-		return creation_date;
+	public LocalDate getCreation_date() {
+		return this.creation_date;
 	}
-
-	public void setCreation_date(String creation_date) {
+	
+	public void setCreation_date(LocalDate creation_date) {
 		this.creation_date = creation_date;
+	}
+	
+	public void setCreation_dateString(String str) {
+		DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyyMMdd");
+		this.setCreation_date(dtf.parseLocalDate(str));
 	}
 
 	public String getSize() {
