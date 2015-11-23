@@ -15,20 +15,21 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 public class TestPost {
 
-	final static String URL = "http://45.55.92.161:8080/medcloud-api/image/new";
+	final static String URL = "http://www.medasave.com.br/api/image/new";
 	final static String URL_DEV = "http://localhost:8080/api/image/new";
-	final static String fileName = "C:\\Users\\Adolfo\\Pictures\\raiox.jpeg";
-	final static String USER_TOKEN = "b7c81e02-9b0c-4a6e-b4ef-2417ed8d0657";
+	final static String fileName = "C:\\Users\\Adolfo\\Pictures\\raiox.jpg"; // <<<<  Diretório da imagem
+	final static String USER_TOKEN = "b7c81e02-9b0c-4a6e-b4ef-2417ed8d0657";  // <<<< Token do usuário de testes adolfobrunno
 	
 	
 	public static void main(String[] args) throws IllegalStateException, IOException {
 
 		DefaultHttpClient httpclient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost(URL_DEV);
+        	HttpPost httpPost = new HttpPost(URL);
 
-        String boundary = "-------------" + System.currentTimeMillis();
-		
-        String jsonBody = "{ \"modality\": \"CT\", "+
+        	String boundary = "-------------" + System.currentTimeMillis();
+	
+		// Editar as propriedades da imagem:     <<<<<<<<<<	
+        	String jsonBody = "{ \"modality\": \"CT\", "+
 			 	"\"iid\" : \"32.3242.1231584.1035\","+
 			 	"\"pid\" : \"2.5496.1231584.0003\","+
 			 	"\"sid\" : \"3.5496.1231584.0002\","+
