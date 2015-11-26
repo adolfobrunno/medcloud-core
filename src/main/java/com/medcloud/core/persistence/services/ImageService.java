@@ -93,7 +93,7 @@ public class ImageService extends BasicService<Image> {
 						new Query().addCriteria(
 								Criteria.where("metadata.image_properties_id").is(image.getIid())));
 				
-				ZipEntry ze = new ZipEntry(result.getFilename()+".jpg");
+				ZipEntry ze = new ZipEntry(result.getFilename()+".dcm");
 				zos.putNextEntry(ze);
 				InputStream is = result.getInputStream();
 				byte[] bytes = new byte[(int) result.getLength()];
